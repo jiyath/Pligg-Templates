@@ -26,6 +26,26 @@
 			</ul>
 		</h4>
 	{else}
+	<div class="post">
+		<h3><a href="#">{$title_short}</a></h3>
+		<div class="postbackground">
+			<div class="postlinks">
+				<span>{$link_shakebox_votes}</span> votes<br /><br />
+				<a id="xvotes-{$link_shakebox_index}" href="javascript:{$link_shakebox_javascript_vote}"><img src="{$my_pligg_base}/templates/{$the_template}/images/vote.png" height="21" width="70" alt="Vote" /></a>
+			</div>
+			<div class="postrechts">
+				<span class="postedby">Posted by <a href="#">Hein Maas</a>1 day(s) ago&nbsp;&nbsp;&nbsp;(<a href="#">http://www.heinmaas.com</a>)</span>
+				<p>Their services include buying and selling of: site templates and themes to skin popular CMS products like WordPress, Drupal and Joomla. Users can sign-up for free and use their …</p>
+				<div class="onderregel">	
+					<img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="#">124 Comments</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<img src="{$my_pligg_base}/templates/{$the_template}/images/add.png" height="9" width="7" alt="add this link to..." />&nbsp;<a href="#">Add this link to...</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<img src="{$my_pligg_base}/templates/{$the_template}/images/bury.png" height="9" width="7" alt="bury" />&nbsp;<a href="#">Bury</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<span class="category">Category</span>: <a href="#">Design</a>		
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
 	<div class="headline">
 		{if $story_status eq "published"}
 		<div class="votebox-published">

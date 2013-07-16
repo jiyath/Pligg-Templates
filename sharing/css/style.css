@@ -156,6 +156,10 @@ width:104px;
 background:url('../images/sortby1.png');
 }
 
+.sortby1 span .active {
+background:url('../images/sortby1.png');
+}
+
 .sortby2 {
 width:70px;
 }

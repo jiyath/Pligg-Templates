@@ -4,6 +4,7 @@
 			<a href="{$my_base_url}{$URL_base}">{#PLIGG_Visual_Published_News#}</a>
 			<a href="{$URL_upcoming}">{#PLIGG_Visual_Pligg_Queued#}</a>
 			<a href="{$URL_submit}">{#PLIGG_Visual_Submit_A_New_Story#}</a>
+			{checkActionsTpl location="tpl_pligg_login_link"}
 		</div>
 	</div>
 	<!-- einde top navigatie -->
@@ -11,16 +12,20 @@
 	<div id="menu">
 		{checkActionsTpl location="tpl_pligg_navbar_start"}
 		<a href="{$my_base_url}{$my_pligg_base}">Home</a>
-		<a href="#">Live</a>
-		<a href="#">Top Users</a>
-		<a href="#">Tag Cloud</a>
+		<a href="{$URL_live}">{#PLIGG_Visual_Live#}</a>
+		<a href="{$URL_topusers}">{#PLIGG_Visual_Top_Users#}</a>
+		<a href="{$URL_tagcloud}">{#PLIGG_Visual_Tags#}</a>
 		{if $enable_group eq "true"}	
-			<a href="{$URL_groups}"><span>{#PLIGG_Visual_Groups#}</span></a>
+			<a href="{$URL_groups}">{#PLIGG_Visual_Groups#}</a>
 		{/if}	
 		{if $user_authenticated eq true}<a href="{$URL_userNoVar}">{#PLIGG_Visual_Profile#}</a>{/if}
+	  {if $user_authenticated neq true}
+		<a href="{$URL_login}">{#PLIGG_Visual_Login_Title#}</a>
+		<a href="{$URL_register}">{#PLIGG_Visual_Register#}</a>
+	  {else}
+		<a href="{$URL_logout}">{#PLIGG_Visual_Logout#}</a>
+	  {/if}
 		{if isset($isgod) && $isgod eq 1}<a href="{$URL_admin}">{#PLIGG_Visual_Header_AdminPanel#}</a>{/if}
-		<a href="#">Login</a>
-		<a href="#">Register</a>
 		{checkActionsTpl location="tpl_pligg_navbar_end"}
 		<script type="text/javascript">
 		{if !isset($searchboxtext)}
@@ -28,46 +33,17 @@
 		{/if}
 		var some_search='{$searchboxtext}';
 		</script>
-		<div id="search">
+		<div id="search">{*
 			<form action="{$my_pligg_base}/search.php" method="get" name="thisform-search" id="thisform-search" {if $urlmethod==2}onsubmit='document.location.href="{$my_base_url}{$my_pligg_base}/search/"+this.search.value.replace(/\//g,"|").replace(/\?/g,"%3F"); return false;'{/if}>
 				<input type="text" size="20" name="search" id="searchsite" value="{$searchboxtext}" onfocus="if(this.value == some_search) {ldelim}this.value = '';{rdelim}" onblur="if (this.value == '') {ldelim}this.value = some_search;{rdelim}"/>
-				<input type="image" value="{#PLIGG_Visual_Search_Go#}" src="{$my_base_url}{$my_pligg_base}/templates/{$the_template}/images/search_button.png" height="23" width="33" />
+				<input type="image" value="{#PLIGG_Visual_Search_Go#}" src="{$my_base_url}{$my_pligg_base}/templates/{$the_template}/images/search_button.png" style="height:23px;width:33px;" />
 			</form>
-			{* 
+			 *}
 			<input type="text" value="Search ..." />
-			<a href="#"><img src="{$my_base_url}{$my_pligg_base}/templates/{$the_template}/images/search_button.png" height="23" width="33" alt="Zoeken" /></a> *}
+			<a href="#"><img src="{$my_base_url}{$my_pligg_base}/templates/{$the_template}/images/search_button.png" height="23" width="33" alt="Zoeken" /></a> 
 		</div>
 	</div>
-	<!-- begin linker kolom -->
-		<div id="links">
-			<div id="sortby">
-				<span>Sort news by <img src="{$my_base_url}{$my_pligg_base}/templates/{$the_template}/images/sortby.png" height="16" width="16" alt="Sort news by" class="logo" /></span>
-				<a href="#" class="sortby1">Recently polular</a>
-				<a href="#" class="sortby2">Top today</a>
-				<a href="#" class="sortby2">Yesterday</a>
-				<a href="#" class="sortby3">Week</a>
-				<a href="#" class="sortby3">Month</a>
-				<a href="#" class="sortby3">Year</a>
-				<div class="clear"></div>
-			</div>
-			<br /><br />
-			<div class="paginisation">
-				<a href="#" class="large">Previous</a>
-				<a href="#" class="small">1</a>
-				<a href="#" class="small">2</a>
-				<a href="#" class="small">3</a>
-				<a href="#" class="small">4</a>
-				<a href="#" class="small">5</a>
-				<a href="#" class="small">6</a>
-				<a href="#" class="small">7</a>
-				<a href="#" class="small">8</a>
-				<span>.....</span>
-				<a href="#" class="medium">134</a>
-				<a href="#" class="medium">135</a>
-				<a href="#" class="large">Next</a>
-				<div class="clear"></div>
-			</div>
-			<div class="clear"></div>
+	{include file=$the_template."/sort.tpl"}
 				<br /><br />	
 				
 				<div class="post">
@@ -75,15 +51,15 @@
 				<div class="postbackground">
 					<div class="postlinks">
 						<span>345</span> votes<br /><br />
-						<a href="#"><img src="images/vote.png" height="21" width="70" alt="Vote" /></a>
+						<a href="#"><img src="{$my_pligg_base}/templates/{$the_template}/images/vote.png" height="21" width="70" alt="Vote" /></a>
 					</div>
 					<div class="postrechts">
 						<span class="postedby">Posted by <a href="#">Hein Maas</a>1 day(s) ago&nbsp;&nbsp;&nbsp;(<a href="#">http://www.heinmaas.com</a>)</span>
 						<p>Their services include buying and selling of: site templates and themes to skin popular CMS products like WordPress, Drupal and Joomla. Users can sign-up for free and use their …</p>
 						<div class="onderregel">	
-							<img src="images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="#">124 Comments</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-							<img src="images/add.png" height="9" width="7" alt="add this link to..." />&nbsp;<a href="#">Add this link to...</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-							<img src="images/bury.png" height="9" width="7" alt="bury" />&nbsp;<a href="#">Bury</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="#">124 Comments</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<img src="{$my_pligg_base}/templates/{$the_template}/images/add.png" height="9" width="7" alt="add this link to..." />&nbsp;<a href="#">Add this link to...</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<img src="{$my_pligg_base}/templates/{$the_template}/images/bury.png" height="9" width="7" alt="bury" />&nbsp;<a href="#">Bury</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 							<span class="category">Category</span>: <a href="#">Design</a>		
 						</div>
 					</div>
