@@ -244,19 +244,19 @@ color:#000;
 color:#497eb4;
 }
 
-#links .paginisation {
+#links .pagination {
 color:#477cb2;
 float:right;
 margin-right:50px;
 }
 
-#links .paginisation span {
+#links .pagination span {
 line-height:30px;
 float:left;
 margin-left:5px;
 }
 
-#links .paginisation a {
+#links .pagination a {
 text-align:center;
 text-decoration:none;
 line-height:20px;
@@ -267,30 +267,30 @@ float:left;
 color:#477cb2;
 }
 
-#links .paginisation .small {
+#links .pagination .small {
 width:20px;
 background:url('../images/paginisationS.png');
 }
 
-#links .paginisation .medium {
+#links .pagination .medium {
 width:30px;
 background:url('../images/paginisationM.png');
 }
 
-#links .paginisation .large {
+#links .pagination .large {
 width:67px;
 background:url('../images/paginisationL.png');
 }
 
-#links .paginisation .small:hover {
+#links .pagination .small:hover {
 background:url('../images/paginisationSH.png');
 }
 
-#links .paginisation .medium:hover {
+#links .pagination .medium:hover {
 background:url('../images/paginisationMH.png');
 }
 
-#links .paginisation .large:hover {
+#links .pagination .large:hover {
 background:url('../images/paginisationLH.png');
 }
 
@@ -513,6 +513,6 @@ line-height:30px;
 margin-left:25px;
 }
 
-#links #sortby a:hover,#links .paginisation a:hover {
+#links #sortby a:hover,#links .pagination a:hover {
 color:#fff;
 }

@@ -30,22 +30,69 @@
 		<h3><a href="#">{$title_short}</a></h3>
 		<div class="postbackground">
 			<div class="postlinks">
-				<span>{$link_shakebox_votes}</span> votes<br /><br />
-				<a id="xvotes-{$link_shakebox_index}" href="javascript:{$link_shakebox_javascript_vote}"><img src="{$my_pligg_base}/templates/{$the_template}/images/vote.png" height="21" width="70" alt="Vote" /></a>
+			  {checkActionsTpl location="tpl_pligg_story_votebox_start"}
+				<span>{$link_shakebox_votes}</span> {#PLIGG_Visual_Vote_Cast#}<br /><br />
+				<a id="xvotes-{$link_shakebox_index}" href="javascript:{$link_shakebox_javascript_vote}"><img src="{$my_pligg_base}/templates/{$the_template}/images/vote.png" height="21" width="70" alt="{#PLIGG_Visual_Vote_Cast#}" /></a>
+			  {checkActionsTpl location="tpl_pligg_story_votebox_end"}
 			</div>
-			<div class="postrechts">
-				<span class="postedby">Posted by <a href="#">Hein Maas</a>1 day(s) ago&nbsp;&nbsp;&nbsp;(<a href="#">http://www.heinmaas.com</a>)</span>
-				<p>Their services include buying and selling of: site templates and themes to skin popular CMS products like WordPress, Drupal and Joomla. Users can sign-up for free and use their …</p>
+			<div class="postrechts">		
+				<span class="postedby">{#PLIGG_Visual_LS_Posted_By#} <a href="{$submitter_profile_url}">{$link_submitter}{if $submitter_rank neq ''} (#{$submitter_rank}){/if}</a>{$link_submit_timeago} {#PLIGG_Visual_Comment_Ago#}&nbsp;&nbsp;&nbsp;
+				{if $url_short neq "http://" && $url_short neq "://"}
+					(<a href="{$url}" {if $open_in_new_window eq true} target="_blank"{/if}  {if $story_status neq "published"}rel="nofollow"{/if}>{$url_short}</a>)
+				{else}
+					({$No_URL_Name})
+				{/if}</span>
+				
+				{checkActionsTpl location="tpl_link_summary_pre_story_content"}
+				{if $pagename eq "story"}{checkActionsTpl location="tpl_pligg_story_body_start_full"}{else}{checkActionsTpl location="tpl_pligg_story_body_start"}{/if}
+
+				{if $viewtype neq "short"}
+					<span id="ls_contents-{$link_shakebox_index}">
+						{if $show_content neq 'FALSE'}
+							<p>{$story_content}</p>
+						{/if}
+						{if $Enable_Extra_Field_1 eq 1}{if $link_field1 neq ""}<br/><b>{$Field_1_Title}:</b> {$link_field1}{/if}{/if}
+						{if $Enable_Extra_Field_2 eq 1}{if $link_field2 neq ""}<br/><b>{$Field_2_Title}:</b> {$link_field2}{/if}{/if}
+						{if $Enable_Extra_Field_3 eq 1}{if $link_field3 neq ""}<br/><b>{$Field_3_Title}:</b> {$link_field3}{/if}{/if}
+						{if $Enable_Extra_Field_4 eq 1}{if $link_field4 neq ""}<br/><b>{$Field_4_Title}:</b> {$link_field4}{/if}{/if}
+						{if $Enable_Extra_Field_5 eq 1}{if $link_field5 neq ""}<br/><b>{$Field_5_Title}:</b> {$link_field5}{/if}{/if}
+						{if $Enable_Extra_Field_6 eq 1}{if $link_field6 neq ""}<br/><b>{$Field_6_Title}:</b> {$link_field6}{/if}{/if}
+						{if $Enable_Extra_Field_7 eq 1}{if $link_field7 neq ""}<br/><b>{$Field_7_Title}:</b> {$link_field7}{/if}{/if}
+						{if $Enable_Extra_Field_8 eq 1}{if $link_field8 neq ""}<br/><b>{$Field_8_Title}:</b> {$link_field8}{/if}{/if}
+						{if $Enable_Extra_Field_9 eq 1}{if $link_field9 neq ""}<br/><b>{$Field_9_Title}:</b> {$link_field9}{/if}{/if}
+						{if $Enable_Extra_Field_10 eq 1}{if $link_field10 neq ""}<br/><b>{$Field_10_Title}:</b> {$link_field10}{/if}{/if}
+						{if $Enable_Extra_Field_11 eq 1}{if $link_field11 neq ""}<br/><b>{$Field_11_Title}:</b> {$link_field11}{/if}{/if}
+						{if $Enable_Extra_Field_12 eq 1}{if $link_field12 neq ""}<br/><b>{$Field_12_Title}:</b> {$link_field12}{/if}{/if}
+						{if $Enable_Extra_Field_13 eq 1}{if $link_field13 neq ""}<br/><b>{$Field_13_Title}:</b> {$link_field13}{/if}{/if}
+						{if $Enable_Extra_Field_14 eq 1}{if $link_field14 neq ""}<br/><b>{$Field_14_Title}:</b> {$link_field14}{/if}{/if}
+						{if $Enable_Extra_Field_15 eq 1}{if $link_field15 neq ""}<br/><b>{$Field_15_Title}:</b> {$link_field15}{/if}{/if} 		  			
+					</span>
+					{checkActionsTpl location="tpl_pligg_story_body_end"}
+				{/if}
+				
 				<div class="onderregel">	
-					<img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="#">124 Comments</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					{checkActionsTpl location="tpl_pligg_story_tools_start"}
+					{if $pagename neq "story" && $pagename neq "submit"} <a href="{$story_url}">{#PLIGG_Visual_Read_More#}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{/if}
+					<span id="ls_comments_url-{$link_shakebox_index}">
+						{if $story_comment_count eq 0}
+							<span id="linksummaryDiscuss"><img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="{$story_url}#discuss" class="comments">{#PLIGG_MiscWords_Discuss#}</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+						{/if}
+						{if $story_comment_count eq 1}
+							<span id="linksummaryHasComment"><img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="{$story_url}#comments" class="comments2">{$story_comment_count} {#PLIGG_MiscWords_Comment#}</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+						{/if}
+						{if $story_comment_count gt 1}
+							<span id="linksummaryHasComment"><img src="{$my_pligg_base}/templates/{$the_template}/images/comment.png" height="9" width="9" alt="Comment" />&nbsp;<a href="{$story_url}#comments" class="comments2">{$story_comment_count} {#PLIGG_MiscWords_Comments#}</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+						{/if}
+					</span> 
 					<img src="{$my_pligg_base}/templates/{$the_template}/images/add.png" height="9" width="7" alt="add this link to..." />&nbsp;<a href="#">Add this link to...</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 					<img src="{$my_pligg_base}/templates/{$the_template}/images/bury.png" height="9" width="7" alt="bury" />&nbsp;<a href="#">Bury</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-					<span class="category">Category</span>: <a href="#">Design</a>		
+					<span class="category">Category</span>: <a href="{$category_url}">{$link_category}</a>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 	</div>
+	
 	<div class="headline">
 		{if $story_status eq "published"}
 		<div class="votebox-published">

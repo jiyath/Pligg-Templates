@@ -106,19 +106,18 @@
 <body dir="{#PLIGG_Visual_Language_Direction#}" {$body_args}>
 	{checkActionsTpl location="tpl_pligg_body_start"}
 	
+	{literal}
+		<script type="text/javascript" language="JavaScript">
+		function checkForm() {
+		answer = true;
+		if (siw && siw.selectingSomething)
+			answer = false;
+		return answer;
+		}//
+		</script>
+	{/literal}
 <!-- START CONTENT -->
 	<div id="container">
-		{literal}
-			<script type="text/javascript" language="JavaScript">
-			function checkForm() {
-			answer = true;
-			if (siw && siw.selectingSomething)
-				answer = false;
-			return answer;
-			}//
-			</script>
-		{/literal}
-		
 		{checkActionsTpl location="tpl_pligg_banner_top"}
 		
 		{include file=$tpl_header.".tpl"}
